@@ -1,0 +1,316 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="30dp">
+
+    <TextView
+        android:id="@+id/raw_label_acc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:paddingBottom="@dimen/raw_header_bottom_pad"
+        android:text="@string/raw_acc_header"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/raw_label_acc_x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_below="@+id/raw_label_acc"
+        android:paddingRight="@dimen/raw_axes_right_pad"
+        android:text="X:"
+        android:textColor="@color/graphX" />
+
+    <TextView
+        android:id="@+id/raw_label_acc_y"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/raw_label_acc_x"
+        android:paddingRight="@dimen/raw_axes_right_pad"
+        android:text="Y:"
+        android:textColor="@color/graphY" />
+
+    <TextView
+        android:id="@+id/raw_label_acc_z"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/raw_label_acc_y"
+        android:paddingRight="@dimen/raw_axes_right_pad"
+        android:text="Z:"
+        android:textColor="@color/graphZ" />
+
+    <TextView
+        android:id="@+id/raw_value_acc_x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/raw_label_acc_x"
+        android:layout_alignBottom="@+id/raw_label_acc_x"
+        android:layout_toEndOf="@+id/raw_label_acc_x"
+        android:textColor="@color/graphX" />
+
+    <TextView
+        android:id="@+id/raw_value_acc_y"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/raw_label_acc_y"
+        android:layout_alignBottom="@+id/raw_label_acc_y"
+        android:layout_toEndOf="@+id/raw_label_acc_y"
+        android:textColor="@color/graphY" />
+
+    <TextView
+        android:id="@+id/raw_value_acc_z"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/raw_label_acc_z"
+        android:layout_alignBottom="@+id/raw_label_acc_z"
+        android:layout_toEndOf="@+id/raw_label_acc_z"
+        android:textColor="@color/graphZ" />
+
+    <Space
+        android:id="@+id/raw_acc_spacer"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/raw_spacer_height"
+        android:layout_below="@+id/raw_label_acc_z" />
+
+    <TextView
+        android:id="@+id/raw_label_acc_world"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/raw_acc_spacer"
+        android:paddingBottom="@dimen/raw_header_bottom_pad"
+        android:text="@string/raw_acc_world_header"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/raw_label_acc_world_x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_below="@+id/raw_label_acc_world"
+        android:paddingRight="@dimen/raw_axes_right_pad"
+        android:text="X:"
+        android:textColor="@color/graphX" />
+
+    <TextView
+        android:id="@+id/raw_label_acc_world_y"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/raw_label_acc_world_x"
+        android:paddingRight="@dimen/raw_axes_right_pad"
+        android:text="Y:"
+        android:textColor="@color/graphY" />
+
+    <TextView
+        android:id="@+id/raw_label_acc_world_z"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/raw_label_acc_world_y"
+        android:paddingRight="@dimen/raw_axes_right_pad"
+        android:text="Z:"
+        android:textColor="@color/graphZ" />
+
+    <TextView
+        android:id="@+id/raw_value_acc_world_x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/raw_label_acc_world_x"
+        android:layout_alignBottom="@+id/raw_label_acc_world_x"
+        android:layout_toEndOf="@+id/raw_label_acc_world_x"
+        android:textColor="@color/graphX" />
+
+    <TextView
+        android:id="@+id/raw_value_acc_world_y"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/raw_label_acc_world_y"
+        android:layout_alignBottom="@+id/raw_label_acc_world_y"
+        android:layout_toEndOf="@+id/raw_label_acc_world_y"
+        android:textColor="@color/graphY" />
+
+    <TextView
+        android:id="@+id/raw_value_acc_world_z"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/raw_label_acc_world_z"
+        android:layout_alignBottom="@+id/raw_label_acc_world_z"
+        android:layout_toEndOf="@+id/raw_label_acc_world_z"
+        android:textColor="@color/graphZ" />
+
+    <Space
+        android:id="@+id/raw_acc_world_spacer"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/raw_spacer_height"
+        android:layout_below="@+id/raw_label_acc_world_z" />
+
+    <TextView
+        android:id="@+id/raw_label_gyro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/raw_acc_world_spacer"
+        android:paddingBottom="@dimen/raw_header_bottom_pad"
+        android:text="@string/raw_gyro_header"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/raw_label_gyro_x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/raw_label_gyro"
+        android:paddingRight="@dimen/raw_axes_right_pad"
+        android:text="X:"
+        android:textColor="@color/graphX" />
+
+    <TextView
+        android:id="@+id/raw_label_gyro_y"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/raw_label_gyro_x"
+        android:paddingRight="@dimen/raw_axes_right_pad"
+        android:text="Y:"
+        android:textColor="@color/graphY" />
+
+    <TextView
+        android:id="@+id/raw_label_gyro_z"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/raw_label_gyro_y"
+        android:paddingRight="@dimen/raw_axes_right_pad"
+        android:text="Z:"
+        android:textColor="@color/graphZ" />
+
+    <TextView
+        android:id="@+id/raw_value_gyro_x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/raw_label_gyro_x"
+        android:layout_alignBottom="@+id/raw_label_gyro_x"
+        android:layout_toEndOf="@+id/raw_label_gyro_x"
+        android:textColor="@color/graphX" />
+
+    <TextView
+        android:id="@+id/raw_value_gyro_y"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/raw_label_gyro_y"
+        android:layout_alignBottom="@+id/raw_label_gyro_y"
+        android:layout_toEndOf="@+id/raw_label_gyro_y"
+        android:textColor="@color/graphY" />
+
+    <TextView
+        android:id="@+id/raw_value_gyro_z"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/raw_label_gyro_z"
+        android:layout_alignBottom="@+id/raw_label_gyro_z"
+        android:layout_toEndOf="@+id/raw_label_gyro_z"
+        android:textColor="@color/graphZ" />
+
+    <Space
+        android:id="@+id/raw_gyro_spacer"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/raw_spacer_height"
+        android:layout_below="@+id/raw_label_gyro_z" />
+
+
+    <TextView
+        android:id="@+id/raw_label_rotationMatrix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/raw_gyro_spacer"
+        android:paddingBottom="@dimen/raw_header_bottom_pad"
+        android:text="@string/raw_rotation_header"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <GridLayout
+        android:id="@+id/rotationGrid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/raw_label_rotationMatrix"
+        android:columnCount="3"
+        android:rowCount="3">
+
+        <TextView
+            android:id="@+id/raw_value_rot_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/raw_rotation_matrix_cell_padding"
+            android:textColor="@color/colorPrimaryText"
+            android:layout_column="0"
+            android:layout_row="0" />
+
+        <TextView
+            android:id="@+id/raw_value_rot_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/raw_rotation_matrix_cell_padding"
+            android:textColor="@color/colorPrimaryText"
+            android:layout_column="1"
+            android:layout_row="0" />
+
+        <TextView
+            android:id="@+id/raw_value_rot_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/raw_rotation_matrix_cell_padding"
+            android:textColor="@color/colorPrimaryText"
+            android:layout_column="2"
+            android:layout_row="0" />
+
+        <TextView
+            android:id="@+id/raw_value_rot_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/raw_rotation_matrix_cell_padding"
+            android:textColor="@color/colorPrimaryText"
+            android:layout_column="0"
+            android:layout_row="1" />
+
+        <TextView
+            android:id="@+id/raw_value_rot_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/raw_rotation_matrix_cell_padding"
+            android:textColor="@color/colorPrimaryText"
+            android:layout_column="1"
+            android:layout_row="1" />
+
+        <TextView
+            android:id="@+id/raw_value_rot_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/raw_rotation_matrix_cell_padding"
+            android:textColor="@color/colorPrimaryText"
+            android:layout_column="2"
+            android:layout_row="1" />
+
+        <TextView
+            android:id="@+id/raw_value_rot_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/raw_rotation_matrix_cell_padding"
+            android:textColor="@color/colorPrimaryText"
+            android:layout_column="0"
+            android:layout_row="2" />
+
+        <TextView
+            android:id="@+id/raw_value_rot_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/raw_rotation_matrix_cell_padding"
+            android:textColor="@color/colorPrimaryText"
+            android:layout_column="1"
+            android:layout_row="2" />
+
+        <TextView
+            android:id="@+id/raw_value_rot_9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/raw_rotation_matrix_cell_padding"
+            android:textColor="@color/colorPrimaryText"
+            android:layout_column="2"
+            android:layout_row="2" />
+
+    </GridLayout>
+
+</RelativeLayout>

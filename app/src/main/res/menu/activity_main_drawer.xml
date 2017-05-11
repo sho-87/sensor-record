@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Participant">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_new"
+                    android:icon="@android:drawable/ic_menu_add"
+                    android:title="@string/nav_new" />
+                <item
+                    android:id="@+id/nav_start"
+                    android:icon="@android:drawable/ic_media_play"
+                    android:title="@string/nav_start" />
+                <item
+                    android:id="@+id/nav_save"
+                    android:icon="@android:drawable/ic_menu_save"
+                    android:title="@string/nav_save" />
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="Sensors">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_raw"
+                    android:icon="@android:drawable/ic_menu_manage"
+                    android:title="@string/nav_raw" />
+                <item
+                    android:id="@+id/nav_accelerometer"
+                    android:icon="@android:drawable/ic_menu_info_details"
+                    android:title="@string/nav_accelerometer" />
+                <item
+                    android:id="@+id/nav_gravity"
+                    android:icon="@android:drawable/ic_menu_info_details"
+                    android:title="@string/nav_gravity" />
+                <item
+                    android:id="@+id/nav_gyroscope"
+                    android:icon="@android:drawable/ic_menu_info_details"
+                    android:title="@string/nav_gyroscope" />
+            </group>
+        </menu>
+    </item>
+
+</menu>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:id="@+id/window_device_info"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="@drawable/window_border"
+              android:orientation="vertical"
+              android:padding="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:text="@string/device_info_title"
+        android:textStyle="bold"/>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/device_model_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/device_model_label"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/device_model_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_toEndOf="@id/device_model_label"/>
+
+        <TextView
+            android:id="@+id/device_android_version_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/device_model_label"
+            android:layout_margin="10dp"
+            android:text="@string/device_android_version_label"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/device_android_version_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/device_model_content"
+            android:layout_margin="10dp"
+            android:layout_toEndOf="@id/device_android_version_label"/>
+
+        <TextView
+            android:id="@+id/device_sensors_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/device_android_version_label"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/device_sensors_label"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/device_explain_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/device_sensors_label"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="12sp"
+            android:text="@string/device_sensors_explanation"/>
+
+        <TextView
+            android:id="@+id/device_accelerometer_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/device_explain_label"
+            android:layout_marginStart="40dp"
+            android:text="@string/device_accelerometer_label"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/device_accelerometer_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/device_explain_label"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/device_accelerometer_label"/>
+
+        <TextView
+            android:id="@+id/device_gyroscope_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/device_accelerometer_label"
+            android:layout_marginStart="40dp"
+            android:text="@string/device_gyroscope_label"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/device_gyroscope_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/device_accelerometer_content"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/device_gyroscope_label"/>
+
+        <TextView
+            android:id="@+id/device_gravity_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/device_gyroscope_label"
+            android:layout_marginStart="40dp"
+            android:text="@string/device_gravity_label"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/device_gravity_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/device_gyroscope_content"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/device_gravity_label"/>
+
+        <TextView
+            android:id="@+id/device_magnetic_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/device_gravity_label"
+            android:layout_marginStart="40dp"
+            android:text="@string/device_magnetometer_label"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/device_magnetic_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/device_gravity_content"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/device_magnetic_label"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center|bottom"
+        android:paddingBottom="10dp">
+        <Button
+            android:id="@+id/device_info_close"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:text="@string/button_close"/>
+    </LinearLayout>
+
+</LinearLayout>

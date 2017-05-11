@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/acceleration_plot_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:weightSum="11" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="10dp">
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="World"
+            android:id="@+id/worldCheckbox"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="center_horizontal" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Linear"
+            android:id="@+id/linearCheckbox"
+            android:layout_toStartOf="@id/worldCheckbox"
+            android:layout_gravity="center_horizontal" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+    <com.androidplot.xy.XYPlot
+        android:id="@+id/plot_sensor"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="10"
+        title="Acceleration" />
+
+    <RelativeLayout
+        android:id="@+id/layout_statistics"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.7" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" >
+
+            <TableLayout
+                android:id="@+id/table_statistics_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TableRow
+                    android:id="@+id/table_statistics_left_row_0"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="2dip" >
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="1" >
+
+                        <TextView
+                            android:id="@+id/label_x_axis"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:fontFamily="sans-serif-condensed"
+                            android:text="X: "
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/graphX" />
+
+                        <TextView
+                            android:id="@+id/value_x_axis"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/label_x_axis"
+                            android:fontFamily="sans-serif-condensed"
+                            android:text="0.00"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#000" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" >
+
+                        <TextView
+                            android:id="@+id/label_y_axis"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:fontFamily="sans-serif-condensed"
+                            android:text="Y: "
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/graphY" />
+
+                        <TextView
+                            android:id="@+id/value_y_axis"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/label_y_axis"
+                            android:fontFamily="sans-serif-condensed"
+                            android:text="0.00"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#000" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1" >
+
+                        <TextView
+                            android:id="@+id/label_z_axis"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:fontFamily="sans-serif-condensed"
+                            android:text="Z: "
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/graphZ" />
+
+                        <TextView
+                            android:id="@+id/value_z_axis"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/label_z_axis"
+                            android:fontFamily="sans-serif-condensed"
+                            android:text="0.00"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#000" />
+                    </RelativeLayout>
+                </TableRow>
+            </TableLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

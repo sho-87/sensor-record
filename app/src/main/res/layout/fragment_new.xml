@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/my_scrollview"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/new_layout_padding"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_ra_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true">
+
+            <EditText
+                android:id="@+id/input_ra"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/new_form_element_height"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ- "
+                android:hint="@string/input_text_ra"
+                android:inputType="textCapWords" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_subnum_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/input_ra_wrapper">
+
+            <EditText
+                android:id="@+id/input_subnum"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/new_form_element_height"
+                android:hint="@string/input_text_subnum"
+                android:inputType="number" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_condition_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/input_subnum_wrapper">
+
+            <EditText
+                android:id="@+id/input_condition"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/new_form_element_height"
+                android:hint="@string/input_text_condition"
+                android:inputType="number" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_age_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/input_condition_wrapper">
+
+            <EditText
+                android:id="@+id/input_age"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/new_form_element_height"
+                android:hint="@string/input_text_age"
+                android:inputType="number" />
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/input_label_height"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/new_form_element_height"
+            android:layout_below="@id/input_age_wrapper"
+            android:gravity="center_vertical"
+            android:paddingEnd="@dimen/new_height_label_right_padding"
+            android:text="@string/input_text_height" />
+
+        <EditText
+            android:id="@+id/input_height_cm"
+            android:layout_width="@dimen/new_input_height_cm"
+            android:layout_height="@dimen/new_form_element_height"
+            android:layout_below="@id/input_age_wrapper"
+            android:layout_toEndOf="@id/input_label_height"
+            android:gravity="center"
+            android:hint="@string/input_text_height_cm"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/input_height_ft"
+            android:layout_width="@dimen/new_input_height_ft"
+            android:layout_height="@dimen/new_form_element_height"
+            android:layout_below="@id/input_age_wrapper"
+            android:layout_toEndOf="@id/input_label_height"
+            android:gravity="center"
+            android:hint="@string/input_text_height_ft"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/input_label_height_ft_symbol"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/new_form_element_height"
+            android:layout_below="@id/input_age_wrapper"
+            android:layout_toEndOf="@id/input_height_ft"
+            android:gravity="top"
+            android:paddingTop="@dimen/new_height_symbol_top_padding"
+            android:text="@string/new_height_ft_symbol" />
+
+        <EditText
+            android:id="@+id/input_height_in"
+            android:layout_width="@dimen/new_input_height_in"
+            android:layout_height="@dimen/new_form_element_height"
+            android:layout_below="@id/input_age_wrapper"
+            android:layout_toEndOf="@id/input_label_height_ft_symbol"
+            android:gravity="center"
+            android:hint="@string/input_text_height_in"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/input_label_height_in_symbol"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/new_form_element_height"
+            android:layout_below="@id/input_age_wrapper"
+            android:layout_toEndOf="@id/input_height_in"
+            android:gravity="top"
+            android:paddingTop="@dimen/new_height_symbol_top_padding"
+            android:text="@string/new_height_in_symbol" />
+
+        <Spinner
+            android:id="@+id/input_height_spinner"
+            android:layout_width="@dimen/new_input_height_spinner"
+            android:layout_height="@dimen/new_form_element_height"
+            android:layout_below="@+id/input_age_wrapper"
+            android:layout_toEndOf="@id/input_label_height_in_symbol"
+            android:gravity="bottom" />
+
+        <TextView
+            android:id="@+id/input_label_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/new_form_element_height"
+            android:layout_below="@id/input_label_height"
+            android:gravity="center_vertical"
+            android:paddingEnd="@dimen/new_sex_label_right_padding"
+            android:text="@string/input_text_sex" />
+
+        <RadioGroup
+            android:id="@+id/input_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/new_form_element_height"
+            android:layout_below="@id/input_label_height"
+            android:layout_toEndOf="@id/input_label_sex"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/input_button_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="20dp"
+                android:text="@string/new_sex_male_label" />
+
+            <RadioButton
+                android:id="@+id/input_button_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/new_sex_female_label" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/input_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/input_sex"
+            android:layout_alignParentEnd="true"
+            android:ems="5"
+            android:text="@string/input_button_save" />
+    </RelativeLayout>
+</ScrollView>

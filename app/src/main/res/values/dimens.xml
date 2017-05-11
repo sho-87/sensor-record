@@ -1,0 +1,39 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">1dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Raw sensor data fragment -->
+    <dimen name="raw_spacer_height">50dp</dimen>
+    <dimen name="raw_axes_right_pad">20dp</dimen>
+    <dimen name="raw_header_bottom_pad">10dp</dimen>
+    <dimen name="raw_rotation_matrix_cell_padding">5dp</dimen>
+
+    <!-- New participant fragment -->
+    <dimen name="new_layout_padding">30dp</dimen>
+
+    <dimen name="new_form_element_height">60dp</dimen>
+    <dimen name="new_input_width">200dp</dimen>
+    <dimen name="new_input_height_spinner">70dp</dimen>
+    <dimen name="new_input_height_cm">130dp</dimen>
+    <dimen name="new_input_height_in">65dp</dimen>
+    <dimen name="new_input_height_ft">65dp</dimen>
+    <dimen name="new_height_symbol_top_padding">15dp</dimen>
+    <dimen name="new_height_label_right_padding">20dp</dimen>
+    <dimen name="new_sex_label_right_padding">35dp</dimen>
+
+    <!-- Subject Info fragment -->
+    <dimen name="subInfo_layout_padding">30dp</dimen>
+    <dimen name="subInfo_label_margin_right">10dp</dimen>
+    <dimen name="subInfo_element_height">30dp</dimen>
+
+    <!-- Start fragment -->
+    <dimen name="start_layout_padding">30dp</dimen>
+    <dimen name="start_label_margin_right">10dp</dimen>
+    <dimen name="start_element_height">30dp</dimen>
+
+</resources>
