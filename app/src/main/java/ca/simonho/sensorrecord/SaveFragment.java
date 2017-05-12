@@ -170,7 +170,7 @@ public class SaveFragment extends Fragment implements View.OnClickListener {
 
             //Create directories for the output csv files
             String pathToExternalStorage = Environment.getExternalStorageDirectory().toString();
-            File exportDir = new File(pathToExternalStorage, "/SensorLoadData");
+            File exportDir = new File(pathToExternalStorage, "/SensorRecord");
             File subjectDataDir = new File(exportDir, "/subjects");
 
             publishProgress(5);

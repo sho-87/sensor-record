@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity
     public static final String TAG = "MainActivity";
 
     NavigationView navigationView;
+    Menu optionsMenu;
     Toolbar toolbar;
     DrawerLayout drawer;
     LayoutInflater inflater;
@@ -75,7 +77,7 @@ public class MainActivity extends AppCompatActivity
 
         //Create the logger
         String pathToExternalStorage = Environment.getExternalStorageDirectory().toString();
-        File logFileDir = new File(pathToExternalStorage, "/SensorLoadData/");
+        File logFileDir = new File(pathToExternalStorage, "/SensorRecord/");
         logger = new Logger(logFileDir);
 
         //Get fragment manager
@@ -115,6 +117,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.activity_main_settings, menu);
+        optionsMenu = menu;
         return true;
     }
 
@@ -145,6 +148,8 @@ public class MainActivity extends AppCompatActivity
 
         switch(id){
             case R.id.action_settings:
+                Toast toast = Toast.makeText(getApplicationContext(), "Settings menu unavailable", Toast.LENGTH_LONG);
+                toast.show();
                 break;
             case R.id.action_device_info:
                 // Inflate the view from a popup layout
