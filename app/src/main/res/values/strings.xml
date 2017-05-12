@@ -5,7 +5,6 @@
     <string name="title_activity_login">Log in</string>
     <string name="login_title">Log in</string>
     <string name="hint_username">Username</string>
-    <string name="hint_password">Password</string>
     <string name="login_button_text">Log in</string>
 
     <!-- Snackbars -->

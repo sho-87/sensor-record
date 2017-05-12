@@ -16,7 +16,6 @@ import android.widget.EditText;
 public class LoginActivity extends AppCompatActivity {
 
     EditText usernameText;
-    EditText passwordText;
     Button loginButton;
 
     final String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -40,9 +39,8 @@ public class LoginActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_login);
 
-        //get fields and set username by default
+        //get fields
         usernameText = (EditText) findViewById(R.id.input_user);
-        passwordText = (EditText) findViewById(R.id.input_password);
         loginButton = (Button) findViewById(R.id.btn_login);
         showItems(true);
 
@@ -84,13 +82,11 @@ public class LoginActivity extends AppCompatActivity {
     public void showItems(Boolean show){
         if (show){
             usernameText.setEnabled(true);
-            passwordText.setEnabled(true);
             loginButton.setEnabled(true);
             loginButton.setAlpha(1);
-            usernameText.setText("username");
+            usernameText.setText("admin");
         } else {
             usernameText.setEnabled(false);
-            passwordText.setEnabled(false);
             loginButton.setEnabled(false);
             loginButton.setAlpha(0.3f);
             usernameText.setText("");
@@ -107,10 +103,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void authenticateUser(View view) {
-
-        EditText username = (EditText) findViewById(R.id.input_user);
-        EditText password = (EditText) findViewById(R.id.input_password);
-
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
