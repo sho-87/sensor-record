@@ -19,7 +19,7 @@
         android:descendantFocusability="beforeDescendants"
         android:focusableInTouchMode="true">
 
-        <ImageView android:src="@drawable/ic_run_white_48dp"
+        <ImageView android:src="@drawable/ic_timeline_white_48dp"
             android:layout_width="wrap_content"
             android:layout_height="72dp"
             android:layout_marginBottom="24dp"
@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:layout_marginBottom="50dp">
             <EditText android:id="@+id/input_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
