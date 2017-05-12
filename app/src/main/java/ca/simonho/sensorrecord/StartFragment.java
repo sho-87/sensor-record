@@ -92,6 +92,9 @@ public class StartFragment extends Fragment implements View.OnClickListener {
                 mainActivity.hamburger.setHomeAsUpIndicator(new DrawerArrowDrawable(getActivity()));
                 mainActivity.hamburger.syncState();
 
+                //Disable options menu items while recording
+                mainActivity.optionsMenu.setGroupEnabled(0, false);
+
                 //Set recording progress message
                 recordProgressMessage.setText(R.string.start_recording_progress);
                 MainActivity.dataRecordStarted = true;
@@ -122,6 +125,9 @@ public class StartFragment extends Fragment implements View.OnClickListener {
             mainActivity.drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
             mainActivity.hamburger.setDrawerIndicatorEnabled(true);
             mainActivity.hamburger.syncState();
+
+            //Re-enable options menu
+            mainActivity.optionsMenu.setGroupEnabled(0, true);
 
             //Show snackbar message for recording complete
             Snackbar.make(coordinatorLayout, R.string.start_recording_complete, Snackbar.LENGTH_SHORT).show();
