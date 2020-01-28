@@ -145,7 +145,7 @@ public class SaveFragment extends Fragment implements View.OnClickListener {
         public void handleMessage (Message msg){
             Double progressPercent = (Double) msg.obj;
 
-            Integer progressValue = 40 + (int) Math.ceil(progressPercent/2);
+            int progressValue = 40 + (int) Math.ceil(progressPercent/2);
 
             dialog.setProgress(progressValue);
         }
@@ -177,7 +177,7 @@ public class SaveFragment extends Fragment implements View.OnClickListener {
             SystemClock.sleep(100);
 
             if (!exportDir.exists()) {
-                Boolean created = exportDir.mkdirs();
+                boolean created = exportDir.mkdirs();
                 mainActivity.logger.i(getActivity(), TAG, "Export Dir created: " + created);
             }
 
@@ -185,7 +185,7 @@ public class SaveFragment extends Fragment implements View.OnClickListener {
             SystemClock.sleep(100);
 
             if (!subjectDataDir.exists()) {
-                Boolean created = subjectDataDir.mkdirs();
+                boolean created = subjectDataDir.mkdirs();
                 mainActivity.logger.i(getActivity(), TAG, "Subject Dir created: " + created);
             }
 
