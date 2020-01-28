@@ -87,18 +87,18 @@ public class MainActivity extends AppCompatActivity
         addFragment(new NewFragment(), true);
 
         //Set the toolbar
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         //Set navigation drawer
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
         hamburger = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(hamburger);
         hamburger.syncState();
 
         //Disable menu items that should display when a user exists
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().findItem(R.id.nav_start).setEnabled(false);
         navigationView.getMenu().findItem(R.id.nav_save).setEnabled(false);
@@ -157,25 +157,25 @@ public class MainActivity extends AppCompatActivity
                         (ViewGroup) findViewById(R.id.window_device_info));
 
                 // Set values
-                TextView deviceModel = (TextView) deviceLayout.findViewById(R.id.device_model_content);
+                TextView deviceModel = deviceLayout.findViewById(R.id.device_model_content);
                 deviceModel.setText(android.os.Build.MODEL);
 
-                TextView deviceAndroidVersion = (TextView) deviceLayout.findViewById(R.id.device_android_version_content);
+                TextView deviceAndroidVersion = deviceLayout.findViewById(R.id.device_android_version_content);
                 deviceAndroidVersion.setText(Build.VERSION.RELEASE);
 
                 // Get sensor availability
                 mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
-                TextView deviceAccelerometer = (TextView) deviceLayout.findViewById(R.id.device_accelerometer_content);
+                TextView deviceAccelerometer = deviceLayout.findViewById(R.id.device_accelerometer_content);
                 deviceAccelerometer.setText(getSensorAvailable(TYPE_ACCELEROMETER));
 
-                TextView deviceGyroscope = (TextView) deviceLayout.findViewById(R.id.device_gyroscope_content);
+                TextView deviceGyroscope = deviceLayout.findViewById(R.id.device_gyroscope_content);
                 deviceGyroscope.setText(getSensorAvailable(TYPE_GYROSCOPE));
 
-                TextView deviceGravity = (TextView) deviceLayout.findViewById(R.id.device_gravity_content);
+                TextView deviceGravity = deviceLayout.findViewById(R.id.device_gravity_content);
                 deviceGravity.setText(getSensorAvailable(TYPE_GRAVITY));
 
-                TextView deviceMagnetometer = (TextView) deviceLayout.findViewById(R.id.device_magnetic_content);
+                TextView deviceMagnetometer = deviceLayout.findViewById(R.id.device_magnetic_content);
                 deviceMagnetometer.setText(getSensorAvailable(TYPE_MAGNETIC));
 
                 // Display the popup in the center
@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity
                 popupDeviceInfo.showAtLocation(deviceLayout, Gravity.CENTER, 0, 0);
 
                 // Close popup on button click
-                Button deviceInfoCloseButton = (Button) deviceLayout.findViewById(R.id.device_info_close);
+                Button deviceInfoCloseButton = deviceLayout.findViewById(R.id.device_info_close);
                 deviceInfoCloseButton.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View popupView) {
                         popupDeviceInfo.dismiss();
@@ -196,10 +196,10 @@ public class MainActivity extends AppCompatActivity
                         (ViewGroup) findViewById(R.id.window_about));
 
                 // Set values
-                TextView aboutAppName = (TextView) aboutLayout.findViewById(R.id.about_app_name_content);
+                TextView aboutAppName = aboutLayout.findViewById(R.id.about_app_name_content);
                 aboutAppName.setText(R.string.app_name);
 
-                TextView aboutAppVersion = (TextView) aboutLayout.findViewById(R.id.about_app_version_content);
+                TextView aboutAppVersion = aboutLayout.findViewById(R.id.about_app_version_content);
                 aboutAppVersion.setText(BuildConfig.VERSION_NAME);
 
                 // Display the popup in the center
@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity
                 popupAbout.showAtLocation(aboutLayout, Gravity.CENTER, 0, 0);
 
                 // Close popup on button click
-                Button aboutCloseButton = (Button) aboutLayout.findViewById(R.id.about_close);
+                Button aboutCloseButton = aboutLayout.findViewById(R.id.about_close);
                 aboutCloseButton.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View popupView) {
                         popupAbout.dismiss();

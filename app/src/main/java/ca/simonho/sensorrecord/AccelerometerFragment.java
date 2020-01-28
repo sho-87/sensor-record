@@ -59,13 +59,13 @@ public class AccelerometerFragment extends Fragment implements SensorEventListen
         mainActivity.setTitle("Accelerometer");
 
         //Get text views
-        textViewXAxis = (TextView) view.findViewById(R.id.value_x_axis);
-        textViewYAxis = (TextView) view.findViewById(R.id.value_y_axis);
-        textViewZAxis = (TextView) view.findViewById(R.id.value_z_axis);
+        textViewXAxis = view.findViewById(R.id.value_x_axis);
+        textViewYAxis = view.findViewById(R.id.value_y_axis);
+        textViewZAxis = view.findViewById(R.id.value_z_axis);
 
         //Get checkboxes
-        linearCheckbox = (CheckBox) view.findViewById(R.id.linearCheckbox);
-        worldCheckbox = (CheckBox) view.findViewById(R.id.worldCheckbox);
+        linearCheckbox = view.findViewById(R.id.linearCheckbox);
+        worldCheckbox = view.findViewById(R.id.worldCheckbox);
 
         //Sensor manager
         sensorManager = (SensorManager) getContext().getSystemService(Context.SENSOR_SERVICE);
@@ -79,7 +79,7 @@ public class AccelerometerFragment extends Fragment implements SensorEventListen
         magData = new float[3];
         plotData = new float[3];
 
-        plot = (XYPlot) view.findViewById(R.id.plot_sensor);
+        plot = view.findViewById(R.id.plot_sensor);
         dynamicPlot = new DynamicLinePlot(plot, getContext(), "Acceleration (m/s^2)");
         dynamicPlot.setMaxRange(18);
         dynamicPlot.setMinRange(-18);

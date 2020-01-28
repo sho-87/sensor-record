@@ -40,7 +40,7 @@ public class StartFragment extends Fragment implements View.OnClickListener {
 
         View view = inflater.inflate(R.layout.fragment_start, container, false);
 
-        coordinatorLayout = (CoordinatorLayout) getActivity().findViewById(R.id.coordinator_layout);
+        coordinatorLayout = getActivity().findViewById(R.id.coordinator_layout);
 
         //Set the nav drawer item highlight
         mainActivity = (MainActivity)getActivity();
@@ -53,12 +53,12 @@ public class StartFragment extends Fragment implements View.OnClickListener {
         dbHelper = DBHelper.getInstance(getActivity());
 
         //Get form text view element and set
-        recordProgressMessage = (TextView) view.findViewById(R.id.start_recording_progress);
-        TextView subNum = (TextView) view.findViewById(R.id.start_value_subNum);
+        recordProgressMessage = view.findViewById(R.id.start_recording_progress);
+        TextView subNum = view.findViewById(R.id.start_value_subNum);
         subNum.setText(dbHelper.getTempSubInfo("subNum"));
 
         //Set onclick listener for save button
-        startButton = (Button) view.findViewById(R.id.startButton);
+        startButton = view.findViewById(R.id.startButton);
         startButton.setOnClickListener(this);
 
         //Set button state depending on whether recording has been started and/or stopped

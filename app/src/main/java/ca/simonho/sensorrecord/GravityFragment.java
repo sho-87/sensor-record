@@ -50,9 +50,9 @@ public class GravityFragment extends Fragment implements SensorEventListener {
         mainActivity.setTitle("Gravity");
 
         //Get text views
-        textViewXAxis = (TextView) view.findViewById(R.id.value_x_axis);
-        textViewYAxis = (TextView) view.findViewById(R.id.value_y_axis);
-        textViewZAxis = (TextView) view.findViewById(R.id.value_z_axis);
+        textViewXAxis = view.findViewById(R.id.value_x_axis);
+        textViewYAxis = view.findViewById(R.id.value_y_axis);
+        textViewZAxis = view.findViewById(R.id.value_z_axis);
 
         //Sensor manager
         sensorManager = (SensorManager) getContext().getSystemService(Context.SENSOR_SERVICE);
@@ -61,7 +61,7 @@ public class GravityFragment extends Fragment implements SensorEventListener {
         //Create graph
         gravData = new float[3];
 
-        plot = (XYPlot) view.findViewById(R.id.plot_sensor);
+        plot = view.findViewById(R.id.plot_sensor);
         dynamicPlot = new DynamicLinePlot(plot, getContext(), "Gravity (m/s^2)");
         dynamicPlot.setMaxRange(12);
         dynamicPlot.setMinRange(-12);

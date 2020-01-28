@@ -53,7 +53,7 @@ public class SaveFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_save, container, false);
-        coordinatorLayout = (CoordinatorLayout) getActivity().findViewById(R.id.coordinator_layout);
+        coordinatorLayout = getActivity().findViewById(R.id.coordinator_layout);
 
         //Set the nav drawer item highlight
         mainActivity = (MainActivity) getActivity();
@@ -63,10 +63,10 @@ public class SaveFragment extends Fragment implements View.OnClickListener {
         mainActivity.setTitle("Save & Quit");
 
         //Get explanation text view
-        explanationText = (TextView) view.findViewById(R.id.saveExplanationText);
+        explanationText = view.findViewById(R.id.saveExplanationText);
 
         //Get save button view
-        saveButton = (Button) view.findViewById(R.id.saveButton);
+        saveButton = view.findViewById(R.id.saveButton);
         saveButton.setOnClickListener(this);
 
         //Get DBHelper

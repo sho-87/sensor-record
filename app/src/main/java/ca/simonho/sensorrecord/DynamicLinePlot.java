@@ -45,8 +45,8 @@ public class DynamicLinePlot
         this.context = context;
         this.yTitle = title;
 
-        series = new SparseArray<SimpleXYSeries>();
-        history = new SparseArray<LinkedList<Number>>();
+        series = new SparseArray<>();
+        history = new SparseArray<>();
 
         initPlot();
     }

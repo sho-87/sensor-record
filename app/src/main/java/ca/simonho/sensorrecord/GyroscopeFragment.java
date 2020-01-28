@@ -54,13 +54,13 @@ public class GyroscopeFragment extends Fragment implements SensorEventListener {
         mainActivity.setTitle("Gyroscope");
 
         //Get text views
-        textViewXAxis = (TextView) view.findViewById(R.id.value_x_axis);
-        textViewYAxis = (TextView) view.findViewById(R.id.value_y_axis);
-        textViewZAxis = (TextView) view.findViewById(R.id.value_z_axis);
+        textViewXAxis = view.findViewById(R.id.value_x_axis);
+        textViewYAxis = view.findViewById(R.id.value_y_axis);
+        textViewZAxis = view.findViewById(R.id.value_z_axis);
 
         //Get radio buttons
-        gyroCalibrated = (RadioButton) view.findViewById(R.id.gyro_select_calibrated);
-        gyroUncalibrated = (RadioButton) view.findViewById(R.id.gyro_select_uncalibrated);
+        gyroCalibrated = view.findViewById(R.id.gyro_select_calibrated);
+        gyroUncalibrated = view.findViewById(R.id.gyro_select_uncalibrated);
 
         gyroCalibrated.setChecked(true);
 
@@ -71,7 +71,7 @@ public class GyroscopeFragment extends Fragment implements SensorEventListener {
         //Create graph
         gyroData = new float[3];
 
-        plot = (XYPlot) view.findViewById(R.id.plot_sensor);
+        plot = view.findViewById(R.id.plot_sensor);
         dynamicPlot = new DynamicLinePlot(plot, getContext(), "Rotation (rad/sec)");
         dynamicPlot.setMaxRange(10);
         dynamicPlot.setMinRange(-10);

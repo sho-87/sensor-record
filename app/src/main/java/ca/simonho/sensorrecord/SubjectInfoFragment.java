@@ -36,7 +36,7 @@ public class SubjectInfoFragment extends Fragment implements View.OnClickListene
 
         View view = inflater.inflate(R.layout.fragment_subject_info, container, false);
 
-        coordinatorLayout = (CoordinatorLayout) getActivity().findViewById(R.id.coordinator_layout);
+        coordinatorLayout = getActivity().findViewById(R.id.coordinator_layout);
 
         //Set the nav drawer item highlight
         mainActivity = (MainActivity) getActivity();
@@ -46,9 +46,9 @@ public class SubjectInfoFragment extends Fragment implements View.OnClickListene
         mainActivity.setTitle("Subject Information");
 
         //Listener for delete button
-        deleteButton = (Button) view.findViewById(R.id.subInfo_button_delete);
+        deleteButton = view.findViewById(R.id.subInfo_button_delete);
         deleteButton.setOnClickListener(this);
-        deleteMessage = (TextView) view.findViewById(R.id.subInfo_delete_message);
+        deleteMessage = view.findViewById(R.id.subInfo_delete_message);
 
         //Set state of delete button depending on whether recording is ongoing
         if(MainActivity.dataRecordStarted & !MainActivity.dataRecordCompleted){
@@ -63,13 +63,13 @@ public class SubjectInfoFragment extends Fragment implements View.OnClickListene
         dbHelper = DBHelper.getInstance(getActivity());
 
         //Get form text view elements
-        TextView date = (TextView) view.findViewById(R.id.subInfo_value_date);
-        TextView ra = (TextView) view.findViewById(R.id.subInfo_value_ra);
-        TextView subNum = (TextView) view.findViewById(R.id.subInfo_value_subNum);
-        TextView condition = (TextView) view.findViewById(R.id.subInfo_value_condition);
-        TextView age = (TextView) view.findViewById(R.id.subInfo_value_age);
-        TextView sex = (TextView) view.findViewById(R.id.subInfo_value_sex);
-        TextView height = (TextView) view.findViewById(R.id.subInfo_value_height);
+        TextView date = view.findViewById(R.id.subInfo_value_date);
+        TextView ra = view.findViewById(R.id.subInfo_value_ra);
+        TextView subNum = view.findViewById(R.id.subInfo_value_subNum);
+        TextView condition = view.findViewById(R.id.subInfo_value_condition);
+        TextView age = view.findViewById(R.id.subInfo_value_age);
+        TextView sex = view.findViewById(R.id.subInfo_value_sex);
+        TextView height = view.findViewById(R.id.subInfo_value_height);
 
         //Set the text view elements in layout to subject info from temp table
         date.setText(dbHelper.getTempSubInfo("date"));
