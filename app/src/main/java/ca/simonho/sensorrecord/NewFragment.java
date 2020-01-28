@@ -58,7 +58,7 @@ public class NewFragment extends Fragment implements AdapterView.OnItemSelectedL
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        coordinatorLayout = (CoordinatorLayout) getActivity().findViewById(R.id.coordinator_layout);
+        coordinatorLayout = getActivity().findViewById(R.id.coordinator_layout);
         View view = inflater.inflate(R.layout.fragment_new, container, false);
 
         //Set the nav drawer item highlight
@@ -73,7 +73,7 @@ public class NewFragment extends Fragment implements AdapterView.OnItemSelectedL
 
         //Height unit spinner
         String[] values = {"cm", "ft/in"};
-        Spinner spinner = (Spinner) view.findViewById(R.id.input_height_spinner);
+        Spinner spinner = view.findViewById(R.id.input_height_spinner);
         ArrayAdapter<String> LTRadapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, values);
         LTRadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinner.setAdapter(LTRadapter);
@@ -91,19 +91,19 @@ public class NewFragment extends Fragment implements AdapterView.OnItemSelectedL
         spinner.setOnItemSelectedListener(this);
 
         //Get all text fields
-        raWrapper = (TextInputLayout) view.findViewById(R.id.input_ra_wrapper);
-        subNumWrapper = (TextInputLayout) view.findViewById(R.id.input_subnum_wrapper);
-        conditionWrapper = (TextInputLayout) view.findViewById(R.id.input_condition_wrapper);
-        ageWrapper = (TextInputLayout) view.findViewById(R.id.input_age_wrapper);
+        raWrapper = view.findViewById(R.id.input_ra_wrapper);
+        subNumWrapper = view.findViewById(R.id.input_subnum_wrapper);
+        conditionWrapper = view.findViewById(R.id.input_condition_wrapper);
+        ageWrapper = view.findViewById(R.id.input_age_wrapper);
 
-        heightCM = (EditText) view.findViewById(R.id.input_height_cm);
-        heightFT = (EditText) view.findViewById(R.id.input_height_ft);
-        heightIN = (EditText) view.findViewById(R.id.input_height_in);
-        heightFTSym = (TextView) view.findViewById(R.id.input_label_height_ft_symbol);
-        heightINSym = (TextView) view.findViewById(R.id.input_label_height_in_symbol);
+        heightCM = view.findViewById(R.id.input_height_cm);
+        heightFT = view.findViewById(R.id.input_height_ft);
+        heightIN = view.findViewById(R.id.input_height_in);
+        heightFTSym = view.findViewById(R.id.input_label_height_ft_symbol);
+        heightINSym = view.findViewById(R.id.input_label_height_in_symbol);
 
         //Listener for create button
-        createButton = (Button) view.findViewById(R.id.input_submit);
+        createButton = view.findViewById(R.id.input_submit);
         createButton.setOnClickListener(this);
 
         // Inflate the layout for this fragment
@@ -163,10 +163,10 @@ public class NewFragment extends Fragment implements AdapterView.OnItemSelectedL
         String heightCMValue = heightCM.getText().toString();
         String heightFTValue = heightFT.getText().toString();
         String heightINValue = heightIN.getText().toString();
-        TextView sexLabel = (TextView) mainActivity.findViewById(R.id.input_label_sex);
-        TextView heightLabel = (TextView) mainActivity.findViewById(R.id.input_label_height);
+        TextView sexLabel = mainActivity.findViewById(R.id.input_label_sex);
+        TextView heightLabel = mainActivity.findViewById(R.id.input_label_height);
 
-        sexGroup = (RadioGroup) mainActivity.findViewById(R.id.input_sex);
+        sexGroup = mainActivity.findViewById(R.id.input_sex);
         int sexID = sexGroup.getCheckedRadioButtonId();
 
         if (sexID != -1) {
@@ -188,8 +188,8 @@ public class NewFragment extends Fragment implements AdapterView.OnItemSelectedL
         } else if (heightUnit.equals("ft")) {
             if (!isEmpty(heightFTValue) & !isEmpty(heightINValue)) {
                 heightLabel.setTextColor(ContextCompat.getColor(getContext(), R.color.colorSecondaryText));
-                Integer feet = Integer.parseInt(heightFT.getText().toString());
-                Integer inches = Integer.parseInt(heightIN.getText().toString());
+                int feet = Integer.parseInt(heightFT.getText().toString());
+                int inches = Integer.parseInt(heightIN.getText().toString());
 
                 height = (int) ((feet * 30) + (inches * 2.54));
                 heightEntered = true;
@@ -207,7 +207,7 @@ public class NewFragment extends Fragment implements AdapterView.OnItemSelectedL
             ageWrapper.setError(null);
 
             //check if subject already exists in main persistent subject table
-            if(!dbHelper.checkSubjectExists(Short.parseShort(subNum))){
+            if (!dbHelper.checkSubjectExists(Short.parseShort(subNum))) {
                 //subject doesn't already exist
 
                 //Insert subject into TEMP subject table
@@ -233,13 +233,13 @@ public class NewFragment extends Fragment implements AdapterView.OnItemSelectedL
                 mainActivity.navigationView.getMenu().findItem(R.id.nav_new).setTitle("Subject Info");
 
                 Snackbar.make(coordinatorLayout, "Subject created", Snackbar.LENGTH_SHORT).show();
-                mainActivity.logger.i(getActivity(),TAG, "Subject #" + subNum + " created");
+                mainActivity.logger.i(getActivity(), TAG, "Subject #" + subNum + " created");
 
                 //Change fragment to subject info screen. Do not add this fragment to the backstack
                 mainActivity.addFragment(new SubjectInfoFragment(), false);
             } else {
                 //subject exists. Set focus on subject number field
-                Snackbar.make(coordinatorLayout,"Subject number already exists...", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(coordinatorLayout, "Subject number already exists...", Snackbar.LENGTH_SHORT).show();
                 subNumWrapper.requestFocus();
             }
         } else {
@@ -290,15 +290,15 @@ public class NewFragment extends Fragment implements AdapterView.OnItemSelectedL
         return string.equals("");
     }
 
-    public void showKeyboard(Boolean show, MainActivity mainActivity){
+    public void showKeyboard(Boolean show, MainActivity mainActivity) {
         InputMethodManager imm = (InputMethodManager) mainActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
 
-        if (show){
+        if (show) {
             imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
         } else {
             // check if no view has focus before hiding keyboard
             View v = mainActivity.getCurrentFocus();
-            if (v != null){
+            if (v != null) {
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
             }
         }

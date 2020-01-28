@@ -50,6 +50,7 @@
     <string name="input_text_sex">Sex:</string>
     <string name="new_sex_male_label">Male</string>
     <string name="new_sex_female_label">Female</string>
+    <string name="new_sex_other_label">Other</string>
     <string name="input_button_save">Create</string>
 
     <!-- Raw sensor data fragment -->
