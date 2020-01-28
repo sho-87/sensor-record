@@ -3,6 +3,7 @@
 
     <!-- Login activity -->
     <string name="title_activity_login">Log in</string>
+    <string name="sensor_record_logo">Sensor Record Logo</string>
     <string name="login_title">Log in</string>
     <string name="hint_username">Username</string>
     <string name="login_button_text">Log in</string>

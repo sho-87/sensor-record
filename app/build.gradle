@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion '25.0.3'
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
         applicationId "ca.simonho.sensorrecord"
@@ -30,5 +30,5 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.android.support:support-v4:28.0.0'
     implementation 'com.androidplot:androidplot-core:0.6.1'
-    compile files('libs/opencsv-2.1-1.0.0.jar')
+    implementation files('libs/opencsv-2.1-1.0.0.jar')
 }

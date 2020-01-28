@@ -40,7 +40,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         //get fields
-        usernameText = (EditText) findViewById(R.id.input_user);
         loginButton = (Button) findViewById(R.id.btn_login);
         showItems(true);
 
@@ -81,15 +80,11 @@ public class LoginActivity extends AppCompatActivity {
 
     public void showItems(Boolean show){
         if (show){
-            usernameText.setEnabled(true);
             loginButton.setEnabled(true);
             loginButton.setAlpha(1);
-            usernameText.setText("admin");
         } else {
-            usernameText.setEnabled(false);
             loginButton.setEnabled(false);
             loginButton.setAlpha(0.3f);
-            usernameText.setText("");
         }
     }
 
