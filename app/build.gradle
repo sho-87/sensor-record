@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 28
     buildToolsVersion '25.0.3'
 
     defaultConfig {
         applicationId "ca.simonho.sensorrecord"
         minSdkVersion 21
-        targetSdkVersion 23
-        versionCode 1
-        versionName "0.1.0"
+        targetSdkVersion 26
+        versionCode 2
+        versionName "0.2.0"
     }
     buildTypes {
         release {
@@ -24,11 +24,11 @@ repositories {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
-    compile 'com.android.support:support-v4:23.1.1'
-    compile 'com.androidplot:androidplot-core:0.6.1'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.androidplot:androidplot-core:0.6.1'
     compile files('libs/opencsv-2.1-1.0.0.jar')
 }
