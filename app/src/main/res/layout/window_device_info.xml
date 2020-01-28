@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:id="@+id/window_device_info"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:background="@drawable/window_border"
-              android:orientation="vertical"
-              android:padding="10dp">
+    android:id="@+id/window_device_info"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/window_border"
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <TextView
         android:layout_width="wrap_content"
@@ -141,6 +140,23 @@
             android:layout_below="@+id/device_gravity_content"
             android:layout_marginStart="10dp"
             android:layout_toEndOf="@id/device_magnetic_label"/>
+
+        <TextView
+            android:id="@+id/device_step_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/device_magnetic_label"
+            android:layout_marginStart="40dp"
+            android:text="@string/device_step_label"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/device_step_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/device_magnetic_content"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/device_step_label"/>
 
     </RelativeLayout>
 

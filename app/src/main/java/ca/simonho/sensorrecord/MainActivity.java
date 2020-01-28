@@ -56,13 +56,11 @@ public class MainActivity extends AppCompatActivity
     public final static short TYPE_GYROSCOPE = Sensor.TYPE_GYROSCOPE;
     public final static short TYPE_GRAVITY = Sensor.TYPE_GRAVITY;
     public final static short TYPE_MAGNETIC = Sensor.TYPE_MAGNETIC_FIELD;
+    public final static short TYPE_STEP_DETECTOR = Sensor.TYPE_STEP_DETECTOR;
 
     //TODO add onscreen condition setting
     //TODO add trial numbers
     //TODO add trial by trial viewer of saved data
-    //TODO update real time graphs with latest graph library
-    //TODO add leg height/pocket height to new participant screen
-    //TODO update code with latest from berman/load
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,8 +176,11 @@ public class MainActivity extends AppCompatActivity
                 TextView deviceMagnetometer = deviceLayout.findViewById(R.id.device_magnetic_content);
                 deviceMagnetometer.setText(getSensorAvailable(TYPE_MAGNETIC));
 
+                TextView deviceStepDetector = deviceLayout.findViewById(R.id.device_step_content);
+                deviceStepDetector.setText(getSensorAvailable(TYPE_STEP_DETECTOR));
+
                 // Display the popup in the center
-                final PopupWindow popupDeviceInfo = new PopupWindow(deviceLayout, 800, 850, true);
+                final PopupWindow popupDeviceInfo = new PopupWindow(deviceLayout, 850, 900, true);
                 popupDeviceInfo.showAtLocation(deviceLayout, Gravity.CENTER, 0, 0);
 
                 // Close popup on button click
@@ -218,7 +219,6 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.

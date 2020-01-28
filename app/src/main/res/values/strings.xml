@@ -105,5 +105,6 @@
     <string name="device_gyroscope_label">Gyroscope:</string>
     <string name="device_gravity_label">Gravity:</string>
     <string name="device_magnetometer_label">Magnetometer:</string>
+    <string name="device_step_label">Step detector:</string>
 
 </resources>
