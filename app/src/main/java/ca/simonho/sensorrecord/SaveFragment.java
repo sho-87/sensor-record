@@ -73,7 +73,7 @@ public class SaveFragment extends Fragment implements View.OnClickListener {
         dbHelper = DBHelper.getInstance(getActivity(), new DatabaseHandler());
 
         //Set text and state of button depending on whether recording is in progress
-        if(MainActivity.dataRecordStarted & !MainActivity.dataRecordCompleted){
+        if (MainActivity.dataRecordStarted & !MainActivity.dataRecordCompleted) {
             explanationText.setText(getResources().getString(R.string.save_message_recording));
             saveButton.setEnabled(false);
         } else {
@@ -132,7 +132,7 @@ public class SaveFragment extends Fragment implements View.OnClickListener {
     }
 
     //Quit the current session and go back to login screen
-    private void quitSession(){
+    private void quitSession() {
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
@@ -142,10 +142,10 @@ public class SaveFragment extends Fragment implements View.OnClickListener {
     //Message handler class for database progress updates
     private static class DatabaseHandler extends Handler {
         @Override
-        public void handleMessage (Message msg){
+        public void handleMessage(Message msg) {
             Double progressPercent = (Double) msg.obj;
 
-            int progressValue = 40 + (int) Math.ceil(progressPercent/2);
+            int progressValue = 40 + (int) Math.ceil(progressPercent / 2);
 
             dialog.setProgress(progressValue);
         }
@@ -171,7 +171,8 @@ public class SaveFragment extends Fragment implements View.OnClickListener {
             //Create directories for the output csv files
             String pathToExternalStorage = Environment.getExternalStorageDirectory().toString();
             File exportDir = new File(pathToExternalStorage, "/SensorRecord");
-            File subjectDataDir = new File(exportDir, "/subjects");
+            File sensorDataDir = new File(exportDir, "/data/sensor");
+            File stepDataDir = new File(exportDir, "/data/steps");
 
             publishProgress(5);
             SystemClock.sleep(100);
@@ -184,16 +185,21 @@ public class SaveFragment extends Fragment implements View.OnClickListener {
             publishProgress(10);
             SystemClock.sleep(100);
 
-            if (!subjectDataDir.exists()) {
-                boolean created = subjectDataDir.mkdirs();
-                mainActivity.logger.i(getActivity(), TAG, "Subject Dir created: " + created);
+            if (!sensorDataDir.exists()) {
+                boolean created = sensorDataDir.mkdirs();
+                mainActivity.logger.i(getActivity(), TAG, "Sensor Dir created: " + created);
+            }
+
+            if (!stepDataDir.exists()) {
+                boolean created = stepDataDir.mkdirs();
+                mainActivity.logger.i(getActivity(), TAG, "Steps Dir created: " + created);
             }
 
             publishProgress(15);
             SystemClock.sleep(100);
 
             //If all directories have been created successfully
-            if (exportDir.exists() && subjectDataDir.exists()) {
+            if (exportDir.exists() && sensorDataDir.exists() && stepDataDir.exists()) {
                 try {
                     //Copy temp subject and sensor data to persistent db tables
                     dbHelper.copyTempData();
@@ -235,15 +241,22 @@ public class SaveFragment extends Fragment implements View.OnClickListener {
                     publishProgress(40);
                     SystemClock.sleep(300);
 
-                    if(exportDataCSV) {
+                    if (exportDataCSV) {
                         //Export individual subject data
                         String subNum = dbHelper.getTempSubInfo("subNum");
-                        File subjectFile = new File(subjectDataDir, subNum + ".csv");
+                        File sensorFile = new File(sensorDataDir, subNum + ".csv");
+                        File stepsFile = new File(stepDataDir, subNum + ".csv");
 
                         try {
-                            dbHelper.exportSubjectData(subjectFile, subNum);
+                            dbHelper.exportSubjectData(sensorFile, subNum);
                         } catch (SQLException | IOException e) {
                             mainActivity.logger.e(getActivity(), TAG, "exportSubjectData error", e);
+                        }
+
+                        try {
+                            dbHelper.exportStepsData(stepsFile, subNum);
+                        } catch (SQLException | IOException e) {
+                            mainActivity.logger.e(getActivity(), TAG, "exportStepsData error", e);
                         }
                     }
 
@@ -257,7 +270,7 @@ public class SaveFragment extends Fragment implements View.OnClickListener {
 
                     mediaScanner = new MediaScanner();
 
-                    try{
+                    try {
                         mediaScanner.scanFile(getContext(), allFiles, null, mainActivity.logger);
                     } catch (Exception e) {
                         mainActivity.logger.e(getActivity(), TAG, "Media scanner exception", e);
@@ -289,10 +302,19 @@ public class SaveFragment extends Fragment implements View.OnClickListener {
                                 public void onClick(View v) {
                                 }
                             }).show();
-                } else if (!subjectDataDir.exists()) {
-                    mainActivity.logger.e(getActivity(), TAG, "Subject directory not found");
+                } else if (!sensorDataDir.exists()) {
+                    mainActivity.logger.e(getActivity(), TAG, "Sensor directory not found");
 
-                    Snackbar.make(coordinatorLayout, "Error: Subject directory doesn't exist", Snackbar.LENGTH_INDEFINITE)
+                    Snackbar.make(coordinatorLayout, "Error: Sensor directory doesn't exist", Snackbar.LENGTH_INDEFINITE)
+                            .setAction(R.string.snackbar_dismiss, new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                }
+                            }).show();
+                } else if (!stepDataDir.exists()) {
+                    mainActivity.logger.e(getActivity(), TAG, "Steps directory not found");
+
+                    Snackbar.make(coordinatorLayout, "Error: Steps directory doesn't exist", Snackbar.LENGTH_INDEFINITE)
                             .setAction(R.string.snackbar_dismiss, new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -304,9 +326,9 @@ public class SaveFragment extends Fragment implements View.OnClickListener {
             }
         }
 
-        public void onProgressUpdate(Integer ... progress){
+        public void onProgressUpdate(Integer... progress) {
             dialog.setProgress(progress[0]);
-            if (progress[0] == 100){
+            if (progress[0] == 100) {
                 dialog.setMessage("Quitting...");
             }
         }

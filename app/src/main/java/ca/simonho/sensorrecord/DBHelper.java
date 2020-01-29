@@ -27,7 +27,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     //Constants for db name and version
     public static final String DATABASE_NAME = "sensorRecord.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     public String databasePath = "";
 
     //Constants for identifying subject table and fields
@@ -61,6 +61,26 @@ public class DBHelper extends SQLiteOpenHelper {
     //SQL to create TEMP subject table
     private static final String SUBJECTS_TABLE_CREATE_TEMP =
             "CREATE TEMP TABLE " + SUBJECTS_TABLE_NAME_TEMP + SUBJECTS_TABLE_STRUCTURE;
+
+    //Constants for identifying steps table and fields
+    public static final String STEPS_TABLE_NAME = "steps";
+    public static final String STEPS_TABLE_NAME_TEMP = "steps_temp";
+    public static final String STEPS_ID = "id";
+    public static final String STEPS_TIME = "time";
+
+    //Steps table structure
+    private static final String STEPS_TABLE_STRUCTURE =
+            " (" + STEPS_ID + " INTEGER, " +
+                    STEPS_TIME + " INTEGER" +
+                    ")";
+
+    //SQL to create steps table
+    private static final String STEPS_TABLE_CREATE =
+            "CREATE TABLE " + STEPS_TABLE_NAME + STEPS_TABLE_STRUCTURE;
+
+    //SQL to create TEMP steps table
+    private static final String STEPS_TABLE_CREATE_TEMP =
+            "CREATE TEMP TABLE " + STEPS_TABLE_NAME_TEMP + STEPS_TABLE_STRUCTURE;
 
     //Constants for identifying data table and fields
     public static final String DATA_TABLE_NAME = "data";
@@ -178,6 +198,7 @@ public class DBHelper extends SQLiteOpenHelper {
         //Create persistent tables
         db.execSQL(SUBJECTS_TABLE_CREATE);
         db.execSQL(DATA_TABLE_CREATE);
+        db.execSQL(STEPS_TABLE_CREATE);
     }
 
     @Override
@@ -187,6 +208,7 @@ public class DBHelper extends SQLiteOpenHelper {
         //Drop persistent tables
         db.execSQL("DROP TABLE IF EXISTS " + SUBJECTS_TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + DATA_TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + STEPS_TABLE_NAME);
 
         //Recreate tables
         onCreate(db);
@@ -218,6 +240,7 @@ public class DBHelper extends SQLiteOpenHelper {
         //Create temp tables
         db.execSQL(SUBJECTS_TABLE_CREATE_TEMP);
         db.execSQL(DATA_TABLE_CREATE_TEMP);
+        db.execSQL(STEPS_TABLE_CREATE_TEMP);
     }
 
     public boolean checkSubjectExists(Short subNum) throws SQLException {
@@ -309,6 +332,7 @@ public class DBHelper extends SQLiteOpenHelper {
         //Delete subject rows from temp subject and data tables. Table is not removed.
         db.delete(SUBJECTS_TABLE_NAME_TEMP, null, null);
         db.delete(DATA_TABLE_NAME_TEMP, null,null);
+        db.delete(STEPS_TABLE_NAME_TEMP, null,null);
     }
 
     public void insertDataTemp(short subNum, long time,
@@ -347,12 +371,24 @@ public class DBHelper extends SQLiteOpenHelper {
         db.insertOrThrow(DATA_TABLE_NAME_TEMP, null, sensorValues);
     }
 
+    public void insertStepsTemp(short subNum, long time) throws SQLException {
+        ContentValues stepValues = new ContentValues();
+
+        stepValues.put(STEPS_ID, subNum);
+        stepValues.put(STEPS_TIME, time);
+
+        db.insertOrThrow(STEPS_TABLE_NAME_TEMP, null, stepValues);
+    }
+
     public void copyTempData() throws SQLException{
         String copySubjectSQL = "INSERT INTO " + SUBJECTS_TABLE_NAME + " SELECT * FROM " + SUBJECTS_TABLE_NAME_TEMP;
         db.execSQL(copySubjectSQL);
 
         String copyDataSQL = "INSERT INTO " + DATA_TABLE_NAME + " SELECT * FROM " + DATA_TABLE_NAME_TEMP;
         db.execSQL(copyDataSQL);
+
+        String copyStepsSQL = "INSERT INTO " + STEPS_TABLE_NAME + " SELECT * FROM " + STEPS_TABLE_NAME_TEMP;
+        db.execSQL(copyStepsSQL);
     }
 
     public void exportTrackingSheet(File outputFile) throws SQLException, IOException {
@@ -365,7 +401,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         while (curCSV.moveToNext()) {
 
-            String arrStr[] = {curCSV.getString(0), curCSV.getString(1), curCSV.getString(2),
+            String[] arrStr = {curCSV.getString(0), curCSV.getString(1), curCSV.getString(2),
                     curCSV.getString(3), curCSV.getString(4), curCSV.getString(5), curCSV.getString(6), curCSV.getString(7)};
 
             csvWrite.writeNext(arrStr);
@@ -383,13 +419,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
         csvWrite.writeNext(curCSV.getColumnNames());
 
-        Integer writeCounter = 0;
-        Integer numRows = curCSV.getCount();
+        int writeCounter = 0;
+        int numRows = curCSV.getCount();
 
         while (curCSV.moveToNext()) {
             writeCounter++;
 
-            String arrStr[] = {curCSV.getString(0), curCSV.getString(1), curCSV.getString(2),
+            String[] arrStr = {curCSV.getString(0), curCSV.getString(1), curCSV.getString(2),
                     curCSV.getString(3), curCSV.getString(4), curCSV.getString(5),
                     curCSV.getString(6), curCSV.getString(7), curCSV.getString(8),
                     curCSV.getString(9), curCSV.getString(10), curCSV.getString(11),
@@ -401,6 +437,39 @@ public class DBHelper extends SQLiteOpenHelper {
             csvWrite.writeNext(arrStr);
 
             if ((writeCounter % 1000) == 0){
+                csvWrite.flush();
+            }
+
+            Double progressPercent = Math.ceil(((float) writeCounter / (float) numRows)*100);
+            Message msg = Message.obtain();
+            msg.obj = progressPercent;
+            msg.setTarget(messageHandler);
+            msg.sendToTarget();
+        }
+
+        csvWrite.close();
+        curCSV.close();
+    }
+
+    public void exportStepsData(File outputFile, String subNum) throws IOException, SQLException {
+
+        csvWrite = new CSVWriter(new FileWriter(outputFile));
+
+        curCSV = db.rawQuery("SELECT * FROM " + STEPS_TABLE_NAME + " WHERE id = " + subNum, null);
+
+        csvWrite.writeNext(curCSV.getColumnNames());
+
+        int writeCounter = 0;
+        int numRows = curCSV.getCount();
+
+        while (curCSV.moveToNext()) {
+            writeCounter++;
+
+            String[] arrStr = {curCSV.getString(0), curCSV.getString(1)};
+
+            csvWrite.writeNext(arrStr);
+
+            if ((writeCounter % 100) == 0){
                 csvWrite.flush();
             }
 

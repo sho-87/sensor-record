@@ -49,6 +49,7 @@ public class SensorService extends Service implements SensorEventListener {
     Sensor gyroscope;
     Sensor gravity;
     Sensor magnetic;
+    Sensor step;
 
     float[] accelerometerMatrix = new float[3];
     float[] gyroscopeMatrix = new float[3];
@@ -61,6 +62,7 @@ public class SensorService extends Service implements SensorEventListener {
         sensorManager.registerListener(this, gyroscope, SensorManager.SENSOR_DELAY_FASTEST);
         sensorManager.registerListener(this, gravity, SensorManager.SENSOR_DELAY_FASTEST);
         sensorManager.registerListener(this, magnetic, SensorManager.SENSOR_DELAY_FASTEST);
+        sensorManager.registerListener(this, step, SensorManager.SENSOR_DELAY_FASTEST);
     }
 
     private void unregisterListener() {
@@ -122,6 +124,13 @@ public class SensorService extends Service implements SensorEventListener {
             gravityMatrix = event.values;
         } else if (i == MainActivity.TYPE_MAGNETIC) {
             magneticMatrix = event.values;
+        } else if (i == MainActivity.TYPE_STEP_DETECTOR) {
+            try{
+                Runnable InsertSteps = new InsertSteps(event.timestamp);
+                executor.execute(InsertSteps);
+            } catch (SQLException e) {
+                Log.e(TAG, "insertSteps: " + e.getMessage(), e);
+            }
         }
 
         SensorManager.getRotationMatrix(rotationMatrix, null, gravityMatrix, magneticMatrix);
@@ -160,6 +169,7 @@ public class SensorService extends Service implements SensorEventListener {
         gyroscope = sensorManager.getDefaultSensor(MainActivity.TYPE_GYROSCOPE);
         gravity = sensorManager.getDefaultSensor(MainActivity.TYPE_GRAVITY);
         magnetic = sensorManager.getDefaultSensor(MainActivity.TYPE_MAGNETIC);
+        step = sensorManager.getDefaultSensor(MainActivity.TYPE_STEP_DETECTOR);
 
         PowerManager manager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         wakeLock = manager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, TAG);
@@ -259,6 +269,19 @@ public class SensorService extends Service implements SensorEventListener {
                     this.gravityMatrix,
                     this.magneticMatrix,
                     this.rotationMatrix);
+        }
+    }
+
+    class InsertSteps implements Runnable {
+        final long curTime;
+
+        //Store the current sensor array values into THIS objects arrays, and db insert from this object
+        public InsertSteps(long curTime) {
+            this.curTime = curTime;
+        }
+
+        public void run() {
+            dbHelper.insertStepsTemp(Short.parseShort(dbHelper.getTempSubInfo("subNum")), this.curTime);
         }
     }
 }
