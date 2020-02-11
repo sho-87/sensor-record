@@ -101,7 +101,7 @@ public class StartFragment extends Fragment implements View.OnClickListener {
                 startButton.setText(R.string.start_button_label_stop);
 
                 //Insert start time of recording
-                dbHelper.setStartTime(Short.parseShort(dbHelper.getTempSubInfo("subNum")), System.currentTimeMillis());
+                dbHelper.setStartTime(Short.parseShort(dbHelper.getTempSubInfo("subNum")), System.currentTimeMillis() - MainActivity.timeOffset);
 
                 //Start the service
                 Intent startService = new Intent(mainActivity, SensorService.class);
