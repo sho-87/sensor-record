@@ -126,7 +126,6 @@ public class SensorService extends Service implements SensorEventListener {
         } else if (i == MainActivity.TYPE_MAGNETIC) {
             magneticMatrix = event.values;
         } else if (i == MainActivity.TYPE_STEP_DETECTOR) {
-            Log.d(TAG, "step event");
             ((Vibrator) getSystemService(VIBRATOR_SERVICE)).vibrate(150);
             try{
                 Runnable InsertSteps = new InsertSteps(System.currentTimeMillis() - MainActivity.timeOffset);
@@ -141,8 +140,8 @@ public class SensorService extends Service implements SensorEventListener {
 //        curTime = event.timestamp; //in nanoseconds
         curTime = System.currentTimeMillis() - MainActivity.timeOffset;
 
-        // only allow one update every POLL_FREQUENCY (convert from ms to nano for comparison).
-        if((curTime - lastUpdate) > POLL_FREQUENCY*1000000) {
+        // only allow one update every POLL_FREQUENCY
+        if((curTime - lastUpdate) > POLL_FREQUENCY) {
 
             lastUpdate = curTime;
 
