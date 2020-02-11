@@ -20,7 +20,6 @@ import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.os.Process;
 import android.os.RemoteException;
-import android.os.Vibrator;
 import android.util.Log;
 
 import java.util.concurrent.ExecutorService;
@@ -126,7 +125,7 @@ public class SensorService extends Service implements SensorEventListener {
         } else if (i == MainActivity.TYPE_MAGNETIC) {
             magneticMatrix = event.values;
         } else if (i == MainActivity.TYPE_STEP_DETECTOR) {
-            ((Vibrator) getSystemService(VIBRATOR_SERVICE)).vibrate(150);
+//            ((Vibrator) getSystemService(VIBRATOR_SERVICE)).vibrate(150);
             try{
                 Runnable InsertSteps = new InsertSteps(System.currentTimeMillis() - MainActivity.timeOffset);
                 executor.execute(InsertSteps);
