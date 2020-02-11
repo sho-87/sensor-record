@@ -111,6 +111,8 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onTimeReceived(long rawDate) {
                 timeOffset = System.currentTimeMillis() - rawDate;
+                Log.d(TAG, "System: " + System.currentTimeMillis());
+                Log.d(TAG, "NTP: " + rawDate);
                 Log.d(TAG,"NTP offset: " +  timeOffset);
             }
 
