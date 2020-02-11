@@ -18,7 +18,9 @@ public class LoginActivity extends AppCompatActivity {
 
     final String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE,
                                 Manifest.permission.READ_EXTERNAL_STORAGE,
-                                Manifest.permission.WAKE_LOCK
+                                Manifest.permission.WAKE_LOCK,
+                                Manifest.permission.VIBRATE,
+                                Manifest.permission.INTERNET
                                 };
 
     @Override
@@ -42,9 +44,12 @@ public class LoginActivity extends AppCompatActivity {
         showItems(true);
 
         //If any of the permission have not been granted, request
-        if (!hasPermission(PERMISSIONS[0]) || !hasPermission(PERMISSIONS[1]) ||
-                !hasPermission(PERMISSIONS[2])){
-
+        if (!hasPermission(PERMISSIONS[0]) ||
+                !hasPermission(PERMISSIONS[1]) ||
+                !hasPermission(PERMISSIONS[2]) ||
+                !hasPermission(PERMISSIONS[3]) ||
+                !hasPermission(PERMISSIONS[4])
+        ){
             ActivityCompat.requestPermissions(this, PERMISSIONS, 10);
         }
     }

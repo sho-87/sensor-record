@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity
     SensorManager mSensorManager;
     DBHelper dbHelper;
     public Logger logger;
+    public static long timeOffset;
 
     //App flags
     public static Boolean dataRecordStarted;
@@ -103,6 +105,20 @@ public class MainActivity extends AppCompatActivity
 
         //Create dbHelper
         dbHelper = DBHelper.getInstance(this);
+
+        //Get ntp time and calculate offset from system time
+        SNTPClient.getDate(Calendar.getInstance().getTimeZone(), new SNTPClient.Listener() {
+            @Override
+            public void onTimeReceived(long rawDate) {
+                timeOffset = System.currentTimeMillis() - rawDate;
+                Log.d(TAG,"NTP offset: " +  timeOffset);
+            }
+
+            @Override
+            public void onError(Exception ex) {
+                Log.d(SNTPClient.TAG, ex.getMessage());
+            }
+        });
 
         //Set app flags on create/recreate
         dataRecordStarted = false;

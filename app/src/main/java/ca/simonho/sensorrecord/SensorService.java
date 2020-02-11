@@ -20,6 +20,7 @@ import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.os.Process;
 import android.os.RemoteException;
+import android.os.Vibrator;
 import android.util.Log;
 
 import java.util.concurrent.ExecutorService;
@@ -125,8 +126,10 @@ public class SensorService extends Service implements SensorEventListener {
         } else if (i == MainActivity.TYPE_MAGNETIC) {
             magneticMatrix = event.values;
         } else if (i == MainActivity.TYPE_STEP_DETECTOR) {
+            Log.d(TAG, "step event");
+            ((Vibrator) getSystemService(VIBRATOR_SERVICE)).vibrate(150);
             try{
-                Runnable InsertSteps = new InsertSteps(event.timestamp);
+                Runnable InsertSteps = new InsertSteps(System.currentTimeMillis() - MainActivity.timeOffset);
                 executor.execute(InsertSteps);
             } catch (SQLException e) {
                 Log.e(TAG, "insertSteps: " + e.getMessage(), e);
@@ -135,7 +138,8 @@ public class SensorService extends Service implements SensorEventListener {
 
         SensorManager.getRotationMatrix(rotationMatrix, null, gravityMatrix, magneticMatrix);
 
-        curTime = event.timestamp; //in nanoseconds
+//        curTime = event.timestamp; //in nanoseconds
+        curTime = System.currentTimeMillis() - MainActivity.timeOffset;
 
         // only allow one update every POLL_FREQUENCY (convert from ms to nano for comparison).
         if((curTime - lastUpdate) > POLL_FREQUENCY*1000000) {
