@@ -6,6 +6,8 @@ import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -29,6 +31,7 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -45,7 +48,7 @@ public class MainActivity extends AppCompatActivity
     SensorManager mSensorManager;
     DBHelper dbHelper;
     public Logger logger;
-    public static long timeOffset;
+    public static long timeOffset = 0;
 
     //App flags
     public static Boolean dataRecordStarted;
@@ -106,22 +109,6 @@ public class MainActivity extends AppCompatActivity
         //Create dbHelper
         dbHelper = DBHelper.getInstance(this);
 
-        //Get ntp time and calculate offset from system time
-        SNTPClient.getDate(Calendar.getInstance().getTimeZone(), new SNTPClient.Listener() {
-            @Override
-            public void onTimeReceived(long rawDate) {
-                timeOffset = System.currentTimeMillis() - rawDate;
-                Log.d(TAG, "System: " + System.currentTimeMillis());
-                Log.d(TAG, "NTP: " + rawDate);
-                Log.d(TAG,"NTP offset: " +  timeOffset);
-            }
-
-            @Override
-            public void onError(Exception ex) {
-                Log.d(SNTPClient.TAG, ex.getMessage());
-            }
-        });
-
         //Set app flags on create/recreate
         dataRecordStarted = false;
         dataRecordCompleted = false;
@@ -135,6 +122,34 @@ public class MainActivity extends AppCompatActivity
         getMenuInflater().inflate(R.menu.activity_main_settings, menu);
         optionsMenu = menu;
         return true;
+    }
+
+    protected void onResume() {
+        super.onResume();
+
+        //Get ntp time and calculate offset from system time
+        SNTPClient.getDate(Calendar.getInstance().getTimeZone(), new SNTPClient.Listener() {
+            @Override
+            public void onTimeReceived(long rawDate) {
+                timeOffset = System.currentTimeMillis() - rawDate;
+                Log.d(TAG, "System time: " + System.currentTimeMillis());
+                Log.d(TAG, "NTP: " + rawDate);
+                Log.d(TAG, "NTP offset: " + timeOffset);
+            }
+
+            @Override
+            public void onError(Exception ex) {
+                Log.d(TAG, ex.getMessage());
+
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast toast = Toast.makeText(getApplicationContext(), String.format(Locale.getDefault(), "No WIFI: Using %dms time offset", timeOffset), Toast.LENGTH_LONG);
+                        toast.show();
+                    }
+                });
+            }
+        });
     }
 
     @Override
@@ -162,7 +177,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        switch(id){
+        switch (id) {
             case R.id.action_settings:
                 Toast toast = Toast.makeText(getApplicationContext(), "Settings menu unavailable", Toast.LENGTH_LONG);
                 toast.show();
@@ -292,12 +307,12 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public String getSensorAvailable(short sensor_type){
+    public String getSensorAvailable(short sensor_type) {
         Sensor curSensor = mSensorManager.getDefaultSensor(sensor_type);
-        if (curSensor != null){
-            return("Yes  " + "(" + curSensor.getVendor() + ")");
+        if (curSensor != null) {
+            return ("Yes  " + "(" + curSensor.getVendor() + ")");
         } else {
-            return("No");
+            return ("No");
         }
     }
 }
