@@ -32,8 +32,8 @@ public class SensorService extends Service implements SensorEventListener {
 
     public static final int SCREEN_OFF_RECEIVER_DELAY = 100;
 
-    //This can't be set below 10ms due to Android/hardware limitations. Use 9 to get more accurate 10ms intervals
-    final short POLL_FREQUENCY = 9; //in milliseconds
+    //This can't be set below 10ms due to Android/hardware limitations
+    final short POLL_FREQUENCY = 15; //in milliseconds
 
     private long lastUpdate = -1;
     long curTime;
